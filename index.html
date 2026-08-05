@@ -12,14 +12,41 @@
       color: #e0e0e0;
       line-height: 1.5;
       overflow-x: hidden;
+      position: relative;
     }
     a { color: inherit; text-decoration: none; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; position: relative; z-index: 2; }
 
+    /* ===== ANIMATED BACKGROUND ===== */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .grid-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      background-image: 
+        linear-gradient(rgba(200, 255, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 255, 0, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.6;
+    }
+
+    /* Header */
     header {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(10,10,15,0.95);
-      backdrop-filter: blur(10px);
+      background: rgba(10,10,15,0.92);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid #1a1a25;
       padding: 12px 0;
     }
@@ -53,11 +80,13 @@
       font-size: 0.95rem;
       cursor: pointer;
     }
+    .connect-btn:hover { opacity: 0.9; }
 
+    /* Hero */
     .hero {
       padding: 50px 0 40px;
       text-align: center;
-      background: radial-gradient(ellipse at top, #12121f 0%, #0a0a0f 70%);
+      position: relative;
     }
     .hero h1 {
       font-size: clamp(2.1rem, 6vw, 3.2rem);
@@ -102,6 +131,7 @@
       font-size: 1rem;
       border: none;
       cursor: pointer;
+      letter-spacing: 0.5px;
     }
     .btn-secondary {
       background: transparent;
@@ -113,11 +143,14 @@
       cursor: pointer;
     }
 
+    /* Metrics */
     .metrics {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1px;
       background: #1a1a25;
+      position: relative;
+      z-index: 2;
     }
     .metric-card {
       background: #0d0d14;
@@ -137,10 +170,11 @@
       text-transform: uppercase;
     }
 
-    section { padding: 40px 0; }
-    h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 6px; }
+    section { padding: 40px 0; position: relative; z-index: 2; }
+    h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 6px; letter-spacing: 0.5px; }
     .section-sub { color: #777; margin-bottom: 24px; font-size: 0.9rem; }
 
+    /* Tiers */
     .tiers {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -166,6 +200,7 @@
     .tier ul { list-style: none; color: #aaa; font-size: 0.9rem; }
     .tier li { margin: 4px 0; }
 
+    /* Steps */
     .steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -186,8 +221,10 @@
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 10px;
       font-weight: 800;
+      font-size: 0.9rem;
     }
 
+    /* Dashboard */
     .dashboard {
       background: #12121a;
       border: 1px solid #1f1f2a;
@@ -224,6 +261,7 @@
     .unstake { background: #1f1f2a; color: #ddd; }
     .claim { background: #10b981; color: white; }
 
+    /* Collection */
     .filters { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
     .filter-btn {
       background: #1a1a25;
@@ -284,11 +322,17 @@
       border-top: 1px solid #1a1a25;
       margin-top: 20px;
       font-size: 0.85rem;
+      position: relative;
+      z-index: 2;
     }
     .note { font-size: 0.75rem; color: #555; margin-top: 6px; }
   </style>
 </head>
 <body>
+  <!-- Animated Background -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="grid-overlay"></div>
+
   <header>
     <div class="container">
       <nav>
@@ -296,7 +340,7 @@
           <img src="IMG_20260804_195332.jpg" alt="Stonk Apes Logo">
           STONK <span>APES</span>
         </div>
-        <button class="connect-btn" onclick="alert('Connect Wallet (simulasi)')">Connect Wallet</button>
+        <button class="connect-btn">Connect Wallet</button>
       </nav>
     </div>
   </header>
@@ -456,7 +500,61 @@
   </footer>
 
   <script>
-    // Data NFT pakai foto stonk1.jpg s/d stonk6.jpg
+    // ===== PARTICLE BACKGROUND ANIMATION =====
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const particleCount = 60;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2.5 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.4;
+        this.speedY = (Math.random() - 0.5) * 0.4;
+        this.opacity = Math.random() * 0.5 + 0.15;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(200, 255, 0, ${this.opacity})`;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // ===== NFT LOGIC =====
     const nfts = [
       { id: 1, status: 'unstaked', img: 'stonk1.jpg' },
       { id: 2, status: 'unstaked', img: 'stonk2.jpg' },
@@ -519,7 +617,7 @@
       });
       selected.clear();
       renderNFTs();
-      alert('Apes staked! (simulasi)');
+      alert('Apes staked! (soon)');
     }
 
     function unstake() {
@@ -529,12 +627,16 @@
       });
       selected.clear();
       renderNFTs();
-      alert('Apes unstaked! (simulasi)');
+      alert('Apes unstaked! (soon)');
     }
 
     function claim() {
-      alert('Rewards claimed! (simulasi)');
+      alert('Rewards claimed! (soon)');
     }
+
+    document.querySelector('.connect-btn').onclick = function() {
+      alert('Connect Wallet (soon)');
+    };
 
     renderNFTs();
   </script>

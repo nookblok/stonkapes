@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STONK APES — Stake Your Apes</title>
+  <title>CASH SLOTH — Stake Your Sloth</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -17,7 +17,6 @@
     a { color: inherit; text-decoration: none; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; position: relative; z-index: 2; }
 
-    /* ===== ANIMATED BACKGROUND ===== */
     #bg-canvas {
       position: fixed;
       top: 0;
@@ -35,14 +34,13 @@
       height: 100%;
       z-index: 1;
       pointer-events: none;
-      background-image: 
+      background-image:
         linear-gradient(rgba(200, 255, 0, 0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(200, 255, 0, 0.03) 1px, transparent 1px);
       background-size: 40px 40px;
       opacity: 0.6;
     }
 
-    /* Header */
     header {
       position: sticky; top: 0; z-index: 100;
       background: rgba(10,10,15,0.92);
@@ -82,7 +80,6 @@
     }
     .connect-btn:hover { opacity: 0.9; }
 
-    /* Hero */
     .hero {
       padding: 50px 0 40px;
       text-align: center;
@@ -143,7 +140,6 @@
       cursor: pointer;
     }
 
-    /* Metrics */
     .metrics {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -174,7 +170,6 @@
     h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 6px; letter-spacing: 0.5px; }
     .section-sub { color: #777; margin-bottom: 24px; font-size: 0.9rem; }
 
-    /* Tiers */
     .tiers {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -200,7 +195,6 @@
     .tier ul { list-style: none; color: #aaa; font-size: 0.9rem; }
     .tier li { margin: 4px 0; }
 
-    /* Steps */
     .steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -224,7 +218,6 @@
       font-size: 0.9rem;
     }
 
-    /* Dashboard */
     .dashboard {
       background: #12121a;
       border: 1px solid #1f1f2a;
@@ -261,7 +254,6 @@
     .unstake { background: #1f1f2a; color: #ddd; }
     .claim { background: #10b981; color: white; }
 
-    /* Collection */
     .filters { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
     .filter-btn {
       background: #1a1a25;
@@ -329,7 +321,6 @@
   </style>
 </head>
 <body>
-  <!-- Animated Background -->
   <canvas id="bg-canvas"></canvas>
   <div class="grid-overlay"></div>
 
@@ -337,8 +328,8 @@
     <div class="container">
       <nav>
         <div class="logo">
-          <img src="IMG_20260804_195332.jpg" alt="Stonk Apes Logo">
-          STONK <span>APES</span>
+          <img src="https://raw.githubusercontent.com/nookblok/stonkapes/main/slothlogo.jpg" alt="Cash Sloth Logo">
+          CASH <span>SLOTH</span>
         </div>
         <button class="connect-btn">Connect Wallet</button>
       </nav>
@@ -347,12 +338,12 @@
 
   <section class="hero">
     <div class="container">
-      <h1>STAKE YOUR <span class="highlight">APES</span><br>EARN REWARDS</h1>
+      <h1>STAKE YOUR <span class="highlight">SLOTH</span><br>EARN REWARDS</h1>
       <p class="hero-desc">
-        Lock your Stonk Apes NFTs and earn $STONK tokens plus tokenized stock drops. The longer you stake, the more you earn.
+        Lock your Cash Sloth NFTs and earn $SLOTH tokens plus tokenized stock drops. The longer you stake, the more you earn. Collection of 2,100 Cash Sloth NFTs on Robinhood Chain.
       </p>
       <div class="hero-image">
-        <img src="IMG_20260805_001009.jpg" alt="Stonk Apes">
+        <img src="https://raw.githubusercontent.com/nookblok/stonkapes/main/banner.jpg" alt="Cash Sloth">
       </div>
       <div class="hero-btns">
         <button class="btn-primary" onclick="document.getElementById('dashboard').scrollIntoView({behavior:'smooth'})">START STAKING</button>
@@ -376,7 +367,7 @@
     </div>
     <div class="metric-card">
       <div class="value">2,500</div>
-      <div class="label">$STONK / DAY / NFT</div>
+      <div class="label">$SLOTH / DAY / NFT</div>
     </div>
   </div>
 
@@ -421,17 +412,17 @@
         <div class="step">
           <div class="step-num">01</div>
           <h3>CONNECT WALLET</h3>
-          <p>Connect your wallet holding Stonk Apes NFTs on Robinhood Chain</p>
+          <p>Connect your wallet holding Cash Sloth NFTs on Robinhood Chain</p>
         </div>
         <div class="step">
           <div class="step-num">02</div>
-          <h3>STAKE YOUR APES</h3>
-          <p>Select the apes you want to stake and confirm the transaction</p>
+          <h3>STAKE YOUR SLOTH</h3>
+          <p>Select the sloth you want to stake and confirm the transaction</p>
         </div>
         <div class="step">
           <div class="step-num">03</div>
-          <h3>EARN $STONK + STOCKS</h3>
-          <p>Earn 2,500 $STONK per day per NFT plus tokenized stock airdrops. Claim anytime.</p>
+          <h3>EARN $SLOTH + STOCKS</h3>
+          <p>Earn 2,500 $SLOTH per day per NFT plus tokenized stock airdrops. Claim anytime.</p>
         </div>
       </div>
     </div>
@@ -440,16 +431,16 @@
   <section id="dashboard">
     <div class="container">
       <h2>STAKING DASHBOARD</h2>
-      <p class="section-sub">Manage your staked Stonk Apes and claim your rewards</p>
+      <p class="section-sub">Manage your staked Cash Sloth and claim your rewards</p>
       <div class="dashboard">
         <div class="dash-grid">
           <div class="stat-box">
             <div class="label">YOUR STAKE</div>
-            <div class="val" id="stakedCount">0 Apes</div>
+            <div class="val" id="stakedCount">0 Sloth</div>
           </div>
           <div class="stat-box">
             <div class="label">PENDING REWARDS</div>
-            <div class="val" id="rewards">0 $STONK</div>
+            <div class="val" id="rewards">0 $SLOTH</div>
           </div>
         </div>
         <div class="actions">
@@ -494,13 +485,14 @@
 
   <footer>
     <div class="container">
-      <p><strong>STONK APES</strong> • Stake Your Apes • Earn $STONK + Tokenized Stocks</p>
-      <p class="note">1.333 Stonk Apes on Robinhood Chain • <a href="https://x.com/stonkapesnft" target="_blank">@stonkapesnft</a></p>
+      <p><strong>CASH SLOTH</strong> • Stake Your Sloth • Earn $SLOTH + Tokenized Stocks</p>
+      <p class="note">2,100 Cash Sloth on Robinhood Chain • <a href="https://x.com/Cash_Sloth" target="_blank">@Cash_Sloth</a></p>
     </div>
   </footer>
 
   <script>
-    // ===== PARTICLE BACKGROUND ANIMATION =====
+    const IMG = 'https://raw.githubusercontent.com/nookblok/stonkapes/main/';
+
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -514,9 +506,7 @@
     window.addEventListener('resize', resizeCanvas);
 
     class Particle {
-      constructor() {
-        this.reset();
-      }
+      constructor() { this.reset(); }
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
@@ -540,28 +530,31 @@
       }
     }
 
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
+    for (let i = 0; i < particleCount; i++) particles.push(new Particle());
 
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
+      particles.forEach(p => { p.update(); p.draw(); });
       requestAnimationFrame(animateParticles);
     }
     animateParticles();
 
-    // ===== NFT LOGIC =====
     const nfts = [
-      { id: 1, status: 'unstaked', img: 'stonk1.jpg' },
-      { id: 2, status: 'unstaked', img: 'stonk2.jpg' },
-      { id: 3, status: 'unstaked', img: 'stonk3.jpg' },
-      { id: 4, status: 'unstaked', img: 'stonk4.jpg' },
-      { id: 5, status: 'unstaked', img: 'stonk5.jpg' },
-      { id: 6, status: 'unstaked', img: 'stonk6.jpg' },
+      { id: 1132, status: 'unstaked', img: IMG + '1132.gif' },
+      { id: 1196, status: 'unstaked', img: IMG + '1196.gif' },
+      { id: 157, status: 'unstaked', img: IMG + '157.gif' },
+      { id: 1676, status: 'unstaked', img: IMG + '1676.gif' },
+      { id: 1825, status: 'unstaked', img: IMG + '1825.gif' },
+      { id: 189, status: 'unstaked', img: IMG + '189.gif' },
+      { id: 1894, status: 'unstaked', img: IMG + '1894.gif' },
+      { id: 2054, status: 'unstaked', img: IMG + '2054.gif' },
+      { id: 230, status: 'unstaked', img: IMG + '230.gif' },
+      { id: 378, status: 'unstaked', img: IMG + '378.gif' },
+      { id: 564, status: 'unstaked', img: IMG + '564.gif' },
+      { id: 592, status: 'unstaked', img: IMG + '592.gif' },
+      { id: 711, status: 'unstaked', img: IMG + '711.gif' },
+      { id: 822, status: 'unstaked', img: IMG + '822.gif' },
+      { id: 998, status: 'unstaked', img: IMG + '998.gif' }
     ];
     let selected = new Set();
     let currentFilter = 'all';
@@ -575,7 +568,7 @@
           card.className = 'nft-card' + (selected.has(nft.id) ? ' selected' : '');
           card.innerHTML = `
             <div class="nft-img">
-              <img src="${nft.img}" alt="Stonk Ape #${nft.id}">
+              <img src="${nft.img}" alt="Cash Sloth #${nft.id}">
             </div>
             <div class="nft-info">
               <div>#${nft.id}</div>
@@ -606,8 +599,8 @@
 
     function updateStats() {
       const staked = nfts.filter(n => n.status === 'staked').length;
-      document.getElementById('stakedCount').textContent = staked + ' Apes';
-      document.getElementById('rewards').textContent = (staked * 2500).toLocaleString() + ' $STONK';
+      document.getElementById('stakedCount').textContent = staked + ' Sloth';
+      document.getElementById('rewards').textContent = (staked * 2500).toLocaleString() + ' $SLOTH';
     }
 
     function stake() {
@@ -617,7 +610,7 @@
       });
       selected.clear();
       renderNFTs();
-      alert('Apes staked! (soon)');
+      alert('Sloth staked! (soon)');
     }
 
     function unstake() {
@@ -627,7 +620,7 @@
       });
       selected.clear();
       renderNFTs();
-      alert('Apes unstaked! (soon)');
+      alert('Sloth unstaked! (soon)');
     }
 
     function claim() {
